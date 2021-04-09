@@ -66,7 +66,9 @@
           </form>
           <hr />
           <div class="text-center">
-            <a class="small" href="forgot-password.html">Forgot Password?</a>
+            <router-link class="small" to="forgot-password.html"
+              >Forgot Password?</router-link
+            >
           </div>
           <div class="text-center">
             <router-link class="small" to="/login"
