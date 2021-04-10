@@ -30,9 +30,7 @@
         </form>
         <hr />
         <div class="text-center">
-          <router-link class="small" to="/forgot-password"
-            >Back to homepage</router-link
-          >
+          <router-link class="small" to="/">Back to homepage</router-link>
         </div>
       </div>
     </div>
