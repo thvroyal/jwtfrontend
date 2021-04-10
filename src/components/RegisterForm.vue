@@ -8,7 +8,7 @@
           <div class="text-center">
             <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
           </div>
-          <form class="user">
+          <form class="user" @submit.prevent="handleSubmit">
             <div class="form-group row">
               <div class="col-sm-6 mb-3 mb-sm-0">
                 <input
@@ -16,6 +16,7 @@
                   class="form-control form-control-user"
                   id="exampleFirstName"
                   placeholder="First Name"
+                  v-model="first_name"
                 />
               </div>
               <div class="col-sm-6">
@@ -24,6 +25,7 @@
                   class="form-control form-control-user"
                   id="exampleLastName"
                   placeholder="Last Name"
+                  v-model="last_name"
                 />
               </div>
             </div>
@@ -33,40 +35,32 @@
                 class="form-control form-control-user"
                 id="exampleInputEmail"
                 placeholder="Email Address"
+                v-model="email"
               />
             </div>
-            <div class="form-group row">
-              <div class="col-sm-6 mb-3 mb-sm-0">
-                <input
-                  type="password"
-                  class="form-control form-control-user"
-                  id="exampleInputPassword"
-                  placeholder="Password"
-                />
-              </div>
-              <div class="col-sm-6">
-                <input
-                  type="password"
-                  class="form-control form-control-user"
-                  id="exampleRepeatPassword"
-                  placeholder="Repeat Password"
-                />
-              </div>
+            <div class="form-group">
+              <input
+                type="password"
+                class="form-control form-control-user"
+                id="exampleInputPassword"
+                placeholder="Password"
+                v-model="password"
+              />
             </div>
-            <a href="login.html" class="btn btn-primary btn-user btn-block">
-              Register Account
-            </a>
+            <button type="submit" class="btn btn-primary btn-user btn-block">
+              Register
+            </button>
             <hr />
-            <a href="index.html" class="btn btn-google btn-user btn-block">
+            <router-link to="#" class="btn btn-google btn-user btn-block">
               <i class="fab fa-google fa-fw"></i> Register with Google
-            </a>
-            <a href="index.html" class="btn btn-facebook btn-user btn-block">
+            </router-link>
+            <router-link to="#" class="btn btn-facebook btn-user btn-block">
               <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
-            </a>
+            </router-link>
           </form>
           <hr />
           <div class="text-center">
-            <router-link class="small" to="forgot-password.html"
+            <router-link class="small" to="forgot-password"
               >Forgot Password?</router-link
             >
           </div>
@@ -82,7 +76,32 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "RegisterForm",
+  data() {
+    return {
+      first_name: "",
+      last_name: "",
+      email: "",
+      password: "",
+    };
+  },
+  methods: {
+    async handleSubmit() {
+      try {
+        const response = await axios.post("register", {
+          first_name: this.first_name,
+          last_name: this.last_name,
+          email: this.email,
+          password: this.password,
+        });
+        console.log(response.data);
+        this.$router.push("/login");
+      } catch (error) {
+        console.error(error);
+      }
+    },
+  },
 };
 </script>
