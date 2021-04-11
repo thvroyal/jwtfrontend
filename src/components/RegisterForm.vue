@@ -7,6 +7,9 @@
         <div class="p-5">
           <div class="text-center">
             <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+            <div v-if="msg" class="alert alert-danger" role="alert">
+              {{ msg }}
+            </div>
           </div>
           <form class="user" @submit.prevent="handleSubmit">
             <div class="form-group row">
@@ -85,6 +88,7 @@ export default {
       last_name: "",
       email: "",
       password: "",
+      msg: "",
     };
   },
   methods: {
@@ -96,8 +100,13 @@ export default {
           email: this.email,
           password: this.password,
         });
-        console.log(response.data);
-        this.$router.push("/login");
+        let { data } = response;
+        if (data.code) {
+          this.$router.push("/login");
+          this.msg = "";
+        } else {
+          this.msg = data.msg;
+        }
       } catch (error) {
         console.error(error);
       }

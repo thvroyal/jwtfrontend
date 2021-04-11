@@ -7,6 +7,9 @@
         <div class="p-5">
           <div class="text-center">
             <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+            <div v-if="msg" class="alert alert-danger" role="alert">
+              {{ msg }}
+            </div>
           </div>
           <form class="user" @submit.prevent="handleSubmit">
             <div class="form-group">
@@ -76,6 +79,7 @@ export default {
     return {
       email: "",
       password: "",
+      msg: "",
     };
   },
   methods: {
@@ -85,8 +89,17 @@ export default {
           email: this.email,
           password: this.password,
         });
-        localStorage.setItem("token", response.data);
-        this.$router.push("/");
+        let { data } = response;
+        if (data.code) {
+          // if login is success
+          localStorage.setItem("token", response.data["access_token"]);
+          this.msg = ""; //no errors
+          this.$router.push("/");
+        }
+        if (!data.code) {
+          // if response code = 0 displat msg error
+          this.msg = data.msg;
+        }
       } catch (e) {
         console.log(e);
       }
