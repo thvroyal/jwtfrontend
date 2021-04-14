@@ -16,14 +16,18 @@
         ></a>
       </div>
     </div>
-    <span class="small text-danger pl-2 position-absolute" style="top: 110%">{{
-      isCaplockOn ? "CapsLock is on" : ""
-    }}</span>
+    <span
+      v-if="checkCapslock"
+      class="small text-danger pl-2 position-absolute"
+      style="top: 110%"
+      >{{ isCaplockOn ? "CapsLock is on" : "" }}</span
+    >
   </div>
 </template>
 <script>
 export default {
   name: "InputPassword",
+  props: ["checkCapslock", "value"],
   data() {
     return {
       status: [
@@ -34,7 +38,6 @@ export default {
       isCaplockOn: false,
     };
   },
-  props: ["value"],
   methods: {
     handleToggle() {
       this.toggle = 1 - this.toggle;

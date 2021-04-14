@@ -14,19 +14,19 @@
             <label class="small mb-1" for="inputOldPassword"
               >Old Password</label
             >
-            <input-password v-model="oldPassword" />
+            <input-password v-model="oldPassword" :checkCapslock="false" />
           </div>
           <div class="form-group">
             <label class="small mb-1" for="inputNewPassword"
               >New Password</label
             >
-            <input-password v-model="newPassword" />
+            <input-password v-model="newPassword" :checkCapslock="false" />
           </div>
           <div class="form-group">
             <label class="small mb-1" for="inputConfirmPassword"
               >Confirm Password</label
             >
-            <input-password v-model="confirmPassword" />
+            <input-password v-model="confirmPassword" :checkCapslock="false" />
           </div>
           <!-- Form Row-->
 

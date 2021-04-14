@@ -41,7 +41,7 @@
                 v-model="email"
               />
             </div>
-            <input-password v-model="password" />
+            <input-password v-model="password" :checkCapslock="true" />
             <button type="submit" class="btn btn-primary btn-user btn-block">
               Register
             </button>

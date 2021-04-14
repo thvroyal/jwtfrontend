@@ -22,7 +22,7 @@
                 v-model="email"
               />
             </div>
-            <input-password v-model="password" />
+            <input-password v-model="password" :checkCapslock="true" />
             <div class="form-group">
               <div
                 class="custom-control custom-checkbox small d-flex justify-content-end"
