@@ -242,7 +242,7 @@
           aria-haspopup="true"
           aria-expanded="false"
         >
-          <span class="mr-2 d-none d-lg-inline text-gray-600">{{
+          <span class="mr-2 d-none d-lg-inline text-gray-600" v-if="user">{{
             user.first_name + " " + user.last_name
           }}</span>
           <img
@@ -256,10 +256,10 @@
           class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
           aria-labelledby="userDropdown"
         >
-          <a class="dropdown-item" href="#">
+          <router-link class="dropdown-item" to="/profile">
             <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400" />
             Profile
-          </a>
+          </router-link>
           <a class="dropdown-item" href="#">
             <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400" />
             Settings
@@ -295,7 +295,7 @@ export default {
   methods: {
     handleLogOut() {
       localStorage.removeItem("token");
-      location.reload();
+      window.location.reload();
     },
   },
 };

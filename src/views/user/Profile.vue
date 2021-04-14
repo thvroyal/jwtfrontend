@@ -1,12 +1,10 @@
 <template>
   <div>
-    <div v-if="user">
-      <Header />
-      <div class="container-fluid pl-5 pr-5">
-        <Welcome />
-      </div>
+    <Header />
+    <div class="container-fluid pl-5 pr-5" v-if="user">
+      <header-title title="Account Setting - Profile" />
+      <router-view :user="user"></router-view>
     </div>
-    <!-- Spinner when get user loading -->
     <div
       v-if="!user"
       class="d-flex justify-content-center align-items-center"
@@ -19,17 +17,17 @@
       ></div>
     </div>
   </div>
+  <!-- Spinner when get user loading -->
 </template>
 
 <script>
 // @ is an alias to /src
-import Header from "../components/Header";
-import { mapGetters } from "vuex";
+import Header from "../../components/Header";
+import HeaderTitle from "../../components/HeaderTitle.vue";
 import axios from "axios";
-import Welcome from "../components/Welcome.vue";
+import { mapGetters } from "vuex";
 export default {
   name: "Home",
-  components: { Header, Welcome },
   async created() {
     try {
       const response = await axios.get("/", {
@@ -44,6 +42,7 @@ export default {
       this.$router.push("/login");
     }
   },
+  components: { Header, HeaderTitle },
   computed: {
     ...mapGetters(["user"]),
   },

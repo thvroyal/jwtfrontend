@@ -1,7 +1,7 @@
 <template>
   <main>
     <!-- Main page content-->
-    <div class="container mt-4" v-if="profile">
+    <div class="container mt-4" v-if="user">
       <!-- Account page navigation-->
       <div class="row">
         <div class="col-xl-4">
@@ -33,7 +33,7 @@
           <div class="card mb-4">
             <div class="card-header">Account Details</div>
             <div class="card-body">
-              <form>
+              <form class="user">
                 <!-- Form Group (username)-->
                 <!-- <div class="form-group">
                   <label class="small mb-1" for="inputUsername"
@@ -60,7 +60,7 @@
                       id="inputFirstName"
                       type="text"
                       placeholder="Enter your first name"
-                      :value="profile.first_name"
+                      :value="user.first_name"
                       :readonly="isEditable"
                     />
                   </div>
@@ -74,7 +74,7 @@
                       id="inputLastName"
                       type="text"
                       placeholder="Enter your last name"
-                      :value="profile.last_name"
+                      :value="user.last_name"
                       :readonly="isEditable"
                     />
                   </div>
@@ -91,7 +91,7 @@
                       id="inputOrgName"
                       type="text"
                       placeholder="Update your organization"
-                      :value="profile.organization"
+                      :value="user.organization"
                       :readonly="isEditable"
                     />
                   </div>
@@ -105,7 +105,7 @@
                       id="inputLocation"
                       type="text"
                       placeholder="Update your location"
-                      :value="profile.location"
+                      :value="user.location"
                       :readonly="isEditable"
                     />
                   </div>
@@ -136,7 +136,7 @@
                       id="inputPhone"
                       type="tel"
                       placeholder="Update your phone number"
-                      :value="profile.phone"
+                      :value="user.phone"
                       :readonly="isEditable"
                     />
                   </div>
@@ -151,7 +151,7 @@
                       type="text"
                       name="birthday"
                       placeholder="Update your birthday"
-                      :value="profile.dob"
+                      :value="user.dob"
                       :readonly="isEditable"
                     />
                   </div>
@@ -201,9 +201,6 @@ export default {
   props: ["user"],
   data() {
     return {
-      profile: {
-        first_name,
-      },
       isEditable: true,
     };
   },

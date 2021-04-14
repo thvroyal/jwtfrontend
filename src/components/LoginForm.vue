@@ -22,17 +22,11 @@
                 v-model="email"
               />
             </div>
+            <input-password v-model="password" />
             <div class="form-group">
-              <input
-                type="password"
-                class="form-control form-control-user"
-                id="exampleInputPassword"
-                placeholder="Password"
-                v-model="password"
-              />
-            </div>
-            <div class="form-group">
-              <div class="custom-control custom-checkbox small">
+              <div
+                class="custom-control custom-checkbox small d-flex justify-content-end"
+              >
                 <input
                   type="checkbox"
                   class="custom-control-input"
@@ -73,7 +67,9 @@
 
 <script>
 import axios from "axios";
+import InputPassword from "./InputPassword.vue";
 export default {
+  components: { InputPassword },
   name: "LoginForm",
   data() {
     return {

@@ -4,6 +4,9 @@ import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
 import Register from "../views/Register.vue";
 import ForgotPassword from "../views/ForgotPassword.vue";
+import Profile from "../views/user/Profile.vue";
+import ChangePassword from "../components/users/ChangePassword.vue";
+import ProfileMain from "../components/users/ProfileMain.vue";
 
 Vue.use(VueRouter);
 
@@ -36,6 +39,20 @@ const routes = [
     path: "/forgot-password",
     name: "ForgotPassword",
     component: ForgotPassword,
+  },
+  {
+    path: "/profile",
+    component: Profile,
+    children: [
+      {
+        path: "",
+        component: ProfileMain,
+      },
+      {
+        path: "change-password",
+        component: ChangePassword,
+      },
+    ],
   },
 ];
 

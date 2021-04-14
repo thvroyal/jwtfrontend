@@ -41,15 +41,7 @@
                 v-model="email"
               />
             </div>
-            <div class="form-group">
-              <input
-                type="password"
-                class="form-control form-control-user"
-                id="exampleInputPassword"
-                placeholder="Password"
-                v-model="password"
-              />
-            </div>
+            <input-password v-model="password" />
             <button type="submit" class="btn btn-primary btn-user btn-block">
               Register
             </button>
@@ -80,7 +72,9 @@
 
 <script>
 import axios from "axios";
+import InputPassword from "./InputPassword.vue";
 export default {
+  components: { InputPassword },
   name: "RegisterForm",
   data() {
     return {
