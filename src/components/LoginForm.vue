@@ -89,6 +89,7 @@ export default {
         if (data.code) {
           // if login is success
           localStorage.setItem("token", response.data["access_token"]);
+          this.$store.dispatch("role", data.role);
           this.msg = ""; //no errors
           this.$router.push("/");
         }

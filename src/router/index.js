@@ -1,5 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import store from "../store/index.js";
 import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
 import Register from "../views/Register.vue";
@@ -54,12 +55,54 @@ const routes = [
       },
     ],
   },
+  {
+    path: "/screenA",
+    name: "screenA",
+    component: () => import("../views/admin/screenA.vue"),
+    meta: {
+      AdminRestrict: true,
+    },
+  },
+  {
+    path: "/screenB",
+    name: "screenB",
+    component: () => import("../views/user/screenB.vue"),
+    meta: {
+      UserRestrict: true,
+    },
+  },
+  {
+    path: "/404",
+    name: "Page404",
+    component: () => import("../views/404.vue"),
+  },
 ];
 
 const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some((route) => route.meta.AdminRestrict)) {
+    if (store.getters.role === 2) {
+      next();
+    } else {
+      next({ path: "/404" });
+    }
+  }
+  next();
+});
+router.beforeEach((to, from, next) => {
+  if (to.matched.some((route) => route.meta.UserRestrict)) {
+    if (store.getters.role === 1 || store.getters.role === 2) {
+      next();
+    } else {
+      next({ path: "/404" });
+    }
+  }
+  next();
 });
 
 export default router;
